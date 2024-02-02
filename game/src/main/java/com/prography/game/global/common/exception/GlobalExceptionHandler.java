@@ -15,21 +15,28 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(Exception.class)
     public ApiResponse<Void> handleException(Exception exception) {
-        log.error("handleException", exception);
+        log.error("[handleException]: ", exception);
         return ApiResponse.error();
     }
 
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(IllegalArgumentException.class)
     public ApiResponse<Void> handleIllegalArgumentException(IllegalArgumentException exception) {
-        log.error("handleIllegalArgumentException {}", exception.getMessage());
+        log.error("[handleIllegalArgumentException]: {}", exception.getMessage());
+        return ApiResponse.fail();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler(IllegalStateException.class)
+    public ApiResponse<Void> handleIllegalStateException(IllegalStateException exception) {
+        log.error("[handleIllegalStateException]: {}", exception.getMessage());
         return ApiResponse.fail();
     }
 
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ApiResponse<Void> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
-        log.error("handleMethodArgumentNotValidException {}", exception.getMessage());
+        log.error("[handleMethodArgumentNotValidException]: {}", exception.getMessage());
         return ApiResponse.fail();
     }
 }

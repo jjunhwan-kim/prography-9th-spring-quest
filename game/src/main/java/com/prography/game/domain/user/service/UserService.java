@@ -1,5 +1,7 @@
 package com.prography.game.domain.user.service;
 
+import com.prography.game.domain.room.repository.RoomRepository;
+import com.prography.game.domain.room.repository.UserRoomRepository;
 import com.prography.game.domain.user.entity.User;
 import com.prography.game.domain.user.repository.UserQueryRepository;
 import com.prography.game.domain.user.repository.UserRepository;
@@ -19,15 +21,15 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserQueryRepository userQueryRepository;
+    private final UserRoomRepository userRoomRepository;
+    private final RoomRepository roomRepository;
 
     @Transactional
     public void clearAndSaveUsers(List<User> users) {
 
-        // TODO Clear All Data
-        // userRoomRepository.deleteAll();
-        // userRepository.deleteAll();
-        // roomRepository.deleteAll();
-
+        userRoomRepository.deleteAll();
+        userRepository.deleteAll();
+        roomRepository.deleteAll();
         userRepository.saveAll(users);
     }
 

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import static com.prography.game.domain.user.entity.UserStatus.*;
+import static com.prography.game.global.common.response.ExceptionMessage.USER_NOT_ACTIVE;
 import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
@@ -29,6 +30,14 @@ public class User extends BaseTimeEntity {
     @Enumerated(STRING)
     private UserStatus status;
 
+    public void updateId(Long id) {
+        this.id = id;
+    }
+
+    public void updateStatus(UserStatus status) {
+        this.status = status;
+    }
+
     public User(Long fakerId, String name, String email) {
         this.fakerId = fakerId;
         this.name = name;
@@ -45,7 +54,7 @@ public class User extends BaseTimeEntity {
 
     public void checkActiveOrElseThrow() {
         if (!UserStatus.ACTIVE.equals(this.status)) {
-            throw new IllegalArgumentException();
+            throw new IllegalStateException(USER_NOT_ACTIVE.getMessage());
         }
     }
 }
