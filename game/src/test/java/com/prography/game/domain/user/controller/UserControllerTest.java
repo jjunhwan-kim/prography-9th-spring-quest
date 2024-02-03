@@ -23,7 +23,7 @@ class UserControllerTest extends ControllerTest {
     @Test
     void getUserList() throws Exception {
 
-        // given
+        // Given
         List<UserListResponse.User> userList = List.of(
                 new UserListResponse.User(1L,
                         1L,
@@ -52,7 +52,7 @@ class UserControllerTest extends ControllerTest {
         given(userService.getUserList(any()))
                 .willReturn(new UserListResponse(3L, 1, userList));
 
-        // when & then
+        // When & Then
         mockMvc.perform(MockMvcRequestBuilders.get("/user")
                         .queryParam("page", "0")
                         .queryParam("size", "10"))

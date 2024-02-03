@@ -24,7 +24,7 @@ class UserQueryRepositoryTest {
     @Test
     void findAll() {
 
-        // given
+        // Given
         for (int i = 1; i <= 25; i++) {
             Long fakerId = (long) i;
             String name = "name " + i;
@@ -32,12 +32,12 @@ class UserQueryRepositoryTest {
             saveUser(fakerId, name, email);
         }
 
-        // when
+        // When
         Page<User> userList1 = userQueryRepository.findAll(0, 10);
         Page<User> userList2 = userQueryRepository.findAll(1, 10);
         Page<User> userList3 = userQueryRepository.findAll(2, 10);
 
-        // then
+        // Then
         assertThat(userList1.getTotalElements()).isEqualTo(25);
         assertThat(userList1.getTotalPages()).isEqualTo(3);
         assertThat(userList1.getContent().size()).isEqualTo(10);
