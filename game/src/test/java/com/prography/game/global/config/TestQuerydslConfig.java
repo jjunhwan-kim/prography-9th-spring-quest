@@ -1,5 +1,6 @@
 package com.prography.game.global.config;
 
+import com.prography.game.domain.room.repository.RoomQueryRepository;
 import com.prography.game.domain.user.repository.UserQueryRepository;
 import com.querydsl.jpa.JPQLTemplates;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -21,5 +22,10 @@ public class TestQuerydslConfig {
     @Bean
     public UserQueryRepository userQueryRepository() {
         return new UserQueryRepository(queryFactory());
+    }
+
+    @Bean
+    public RoomQueryRepository roomQueryRepository() {
+        return new RoomQueryRepository(queryFactory());
     }
 }

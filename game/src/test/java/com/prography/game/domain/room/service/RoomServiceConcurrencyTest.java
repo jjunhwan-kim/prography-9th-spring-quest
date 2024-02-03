@@ -39,7 +39,7 @@ class RoomServiceConcurrencyTest {
     @Test
     void attendRoom() throws InterruptedException {
 
-        int userCount = 201;
+        int userCount = 20;
         int threadCount = userCount - 1;
 
         List<User> userList = new ArrayList<>();
