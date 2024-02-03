@@ -449,10 +449,10 @@ class RoomServiceTest {
         assertThat(room.getBlueTeamCount()).isEqualTo(0);
 
         Optional<UserRoom> optionalHostUserRoom = userRoomRepository.findByRoomAndUser(room, host);
-        assertThat(optionalHostUserRoom).isPresent();
+        assertThat(optionalHostUserRoom).isEmpty();
 
         Optional<UserRoom> optionalUserRoom = userRoomRepository.findByRoomAndUser(room, user);
-        assertThat(optionalUserRoom).isPresent();
+        assertThat(optionalUserRoom).isEmpty();
     }
 
     @DisplayName("유저가 참가한 방이 아닌 방에서 나갈시 예외가 발생한다.")

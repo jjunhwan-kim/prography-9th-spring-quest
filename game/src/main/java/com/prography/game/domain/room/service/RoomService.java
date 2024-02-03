@@ -127,6 +127,11 @@ public class RoomService {
 
         if (room.isHost(user)) {
             room.close();
+
+            List<UserRoom> userRoomList = userRoomRepository.findByRoom(room);
+            for (UserRoom userRoom : userRoomList) {
+                userRoomRepository.delete(userRoom);
+            }
         } else {
             UserRoom userRoom = userRoomRepository.findByRoomAndUser(room, user)
                     .orElseThrow(() -> new IllegalArgumentException(ExceptionMessage.USER_NOT_IN_ROOM.getMessage()));
